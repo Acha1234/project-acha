@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <!-- Pengaturan dasar halaman -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Judul Website -->
+    <title>Sistem Inventaris Barang - Toko Komputer K1</title>
+    <!-- Menghubungkan file CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- EFEK ASAP / BACKGROUND -->
+    <div class="smoke smoke-top"></div>
+    <div class="smoke smoke-bottom"></div>
+
+    <!-- HALAMAN 1 - MENU AWAL -->
+     <div id="loader">
+    <div class="spinner"></div>
+    </div>
+    <section id="homePage" class="page active dark-bg">
+        <div class="curve curve-top"></div>
+        <div class="curve curve-bottom"></div>
+        <div class="center-box">
+            <img src="images/menu.png" class="menu-logo">
+            <h1>SISTEM INVENTARIS BARANG</h1>
+            <h2>Toko Komputer K1</h2>
+            <button onclick="goToPage('loginRolePage')" class="btn blue-btn">
+                MULAI
+            </button>
+        </div>
+
+        <p class="credit-text">
+            Oleh : Kelompok 1 STRUKTUR DATA
+        </p>
+    </section>
+
+    <!-- HALAMAN 2 - MASUK SEBAGAI -->
+    <section id="loginRolePage" class="page dark-bg">
+        <div class="center-box">
+            <h1>MASUK SEBAGAI</h1>
+            <button onclick="goToPage('sellerPasswordPage')" class="btn blue-btn">
+                PENJUAL
+            </button>
+            <button onclick="openBuyerPage()" class="btn blue-btn">
+                PEMBELI
+            </button>
+        </div>
+        <button onclick="goToPage('homePage')" class="btn back-btn bottom-left">
+            KEMBALI
+        </button>
+    </section>
+
+    <!-- HALAMAN 3 - PASSWORD PENJUAL -->
+    <section id="sellerPasswordPage" class="page gray-bg">
+        <div class="center-box">
+            <h1>MASUKKAN PASSWORD PENJUAL</h1>
+            <input
+                type="password"
+                id="sellerPassword"
+                class="input-box"
+                placeholder="Masukkan Password"
+            >
+        </div>
+        <button onclick="checkPassword()" class="btn blue-btn bottom-right">
+            KONFIRMASI
+        </button>
+        <button onclick="goToPage('loginRolePage')" class="btn back-btn bottom-left">
+            KEMBALI
+        </button>
+    </section>
+
+    <!-- HALAMAN 4 - PENGELOLA TOKO -->
+    <section id="sellerDashboardPage" class="page gray-bg">
+    <p class="mode-text">Mode : PENJUAL</p>
+    <h1 class="top-title">PENGELOLA TOKO</h1>
+
+    <div class="dashboard-container">
+
+        <!-- KELOLA BARANG -->
+        <div class="dashboard-card">
+            <h3>KELOLA JUMLAH DAN HARGA BARANG</h3>
+
+            <div class="icon-box barang-icon"></div>
+
+            <button onclick="renderSellerItems(); goToPage('manageItemsPage')" class="btn blue-btn">
+                MASUK
+            </button>
+        </div>
+
+        <!-- KEUANGAN -->
+        <div class="dashboard-card">
+            <h3>KELOLA KEUANGAN</h3>
+
+            <div class="icon-box uang-icon"></div>
+
+            <button onclick="renderFinanceTable(); goToPage('financePage')" class="btn blue-btn">
+                MASUK
+            </button>
+        </div>
+
+        <!-- ANTRIAN -->
+        <div class="dashboard-card">
+            <h3>KELOLA ANTRIAN PEMBELI</h3>
+
+            <div class="icon-box antrian-icon"></div>
+
+            <button onclick="renderQueue(); goToPage('queuePage')" class="btn blue-btn">
+                MASUK
+            </button>
+        </div>
+
+    </div>
+
+    <button onclick="goToPage('sellerPasswordPage')" class="btn back-btn bottom-left">
+        KEMBALI
+    </button>
+    </section>
+
+    <!-- HALAMAN 5 - KELOLA DATA BARANG -->
+    <section id="manageItemsPage" class="page gray-bg">
+        <p class="mode-text">Mode : PENJUAL</p>
+        <h1 class="top-title">KELOLA DATA BARANG</h1>
+        <!-- SEARCH -->
+        <div class="search-container">
+            <button class="btn small-btn">Cari</button>
+            <input
+                type="text"
+                id="searchSeller"
+                placeholder="Cari barang..."
+                class="search-box"
+                onkeyup="renderSellerItems()"
+            >
+            <button onclick="clearSellerSearch()" class="btn small-btn">
+                Hapus
+            </button>
+        </div>
+        <!-- DATA BARANG -->
+        <div class="table-container">
+            <div class="table-header">
+                <span>No</span>
+                <span>Nama Barang</span>
+                <span>Stok Barang</span>
+                <span>Harga Barang</span>
+            </div>
+            <div id="sellerItemList"></div>
+        </div>
+        <button onclick="goToPage('sellerDashboardPage')" class="btn back-btn bottom-left">
+            KEMBALI
+        </button>
+        <button onclick="saveItems()" class="btn blue-btn bottom-right">
+            SIMPAN
+        </button>
+    </section>
+
+    <!-- HALAMAN 6 - KEUANGAN -->
+    <section id="financePage" class="page gray-bg">
+        <p class="mode-text">Mode : PENJUAL</p>
+        <h1 class="top-title">KELOLA DATA KEUANGAN</h1>
+        <div class="finance-table">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Transaksi</th>
+                        <th>Hari/Tanggal Waktu</th>
+                        <th>Keterangan</th>
+                        <th>Pemasukkan</th>
+                        <th>Pengeluaran</th>
+                        <th>Saldo</th>
+                    </tr>
+                </thead>
+                <tbody id="financeTableBody"></tbody>
+            </table>
+        </div>
+        <div class="finance-button-left">
+            <button onclick="goToPage('addIncomePage')" class="btn green-btn">
+                Tambah Pemasukkan
+            </button>
+            <button onclick="goToPage('addExpensePage')" class="btn red-btn">
+                Tambah Pengeluaran
+            </button>
+        </div>
+        <div class="finance-button-right">
+            <button onclick="deleteFinanceData()" class="btn red-btn">
+            HAPUS DATA
+            </button>
+            <button onclick="goToPage('sellerDashboardPage')" class="btn blue-btn">
+                Kembali
+            </button>
+            <button onclick="saveFinance()" class="btn blue-btn">
+                SIMPAN
+            </button>
+        </div>
+    </section>
+
+    <!-- HALAMAN 7 - TAMBAH PEMASUKKAN -->
+    <section id="addIncomePage" class="page gray-bg">
+        <p class="mode-text">Mode : PENJUAL</p>
+        <h1 class="top-title">TAMBAH PEMASUKKAN</h1>
+        <div class="form-box">
+            <input type="text" id="incomeTransaction" placeholder="Transaksi">
+            <input type="text" id="incomeDay" placeholder="Hari">
+            <input type="text" id="incomeDate" placeholder="Tanggal">
+            <input type="text" id="incomeTime" placeholder="Waktu">
+            <input type="text" id="incomeDesc" placeholder="Keterangan">
+            <input type="number" id="incomeAmount" placeholder="Pemasukkan">
+        </div>
+        <button onclick="goToPage('financePage')" class="btn blue-btn bottom-left">
+            Kembali
+        </button>
+        <button onclick="addIncome()" class="btn blue-btn bottom-right">
+            SIMPAN
+        </button>
+    </section>
+
+    <!-- HALAMAN 8 - TAMBAH PENGELUARAN -->
+    <section id="addExpensePage" class="page gray-bg">
+        <p class="mode-text">Mode : PENJUAL</p>
+        <h1 class="top-title">TAMBAH PENGELUARAN</h1>
+        <div class="form-box">
+            <input type="text" id="expenseTransaction" placeholder="Transaksi">
+            <input type="text" id="expenseDay" placeholder="Hari">
+            <input type="text" id="expenseDate" placeholder="Tanggal">
+            <input type="text" id="expenseTime" placeholder="Waktu">
+            <input type="text" id="expenseDesc" placeholder="Keterangan">
+            <input type="number" id="expenseAmount" placeholder="Pengeluaran">
+        </div>
+        <button onclick="goToPage('financePage')" class="btn blue-btn bottom-left">
+            Kembali
+        </button>
+        <button onclick="addExpense()" class="btn blue-btn bottom-right">
+            SIMPAN
+        </button>
+    </section>
+
+    <!-- HALAMAN 9 - ANTRIAN PEMBELI -->
+    <section id="queuePage" class="page gray-bg">
+        <p class="mode-text">Mode : PENJUAL</p>
+        <h1 class="top-title">KELOLA DATA ANTRIAN PEMBELI</h1>
+        <div class="table-container">
+            <div class="table-header">
+                <span>No</span>
+                <span>Nama Pembeli</span>
+                <span>Total Harga</span>
+                <span>Jumlah Uang</span>
+                <span>Struk</span>
+            </div>
+            <div id="queueList"></div>
+        </div>
+        <button onclick="goToPage('sellerDashboardPage')" class="btn blue-btn bottom-left">
+            Kembali
+        </button>
+        <button onclick="processQueue()" class="btn blue-btn bottom-right">
+            INPUT DATA
+        </button>
+    </section>
+
+    <!-- HALAMAN 10 - STRUK PENJUAL -->
+    <section id="sellerReceiptPage" class="page gray-bg">
+        <p class="mode-text">Mode : PENJUAL</p>
+        <h1 class="top-title">STRUK PEMBELI</h1>
+        <div class="receipt-box" id="sellerReceiptContent"></div>
+        <button onclick="goToPage('queuePage')" class="btn blue-btn bottom-right">
+            Kembali
+        </button>
+    </section>
+
+    <!-- HALAMAN 11 - DATA BARANG PEMBELI -->
+    <section id="buyerItemsPage" class="page buyer-bg">
+        <p class="mode-text">Mode : PEMBELI</p>
+        <h1 class="top-title">DATA BARANG</h1>
+        <div class="search-container">
+            <button class="btn small-btn">Cari</button>
+            <input
+                type="text"
+                id="searchBuyer"
+                placeholder="Cari barang..."
+                class="search-box"
+                onkeyup="renderBuyerItems()"
+            >
+            <button onclick="clearBuyerSearch()" class="btn small-btn">
+                Hapus
+            </button>
+        </div>
+        <input
+            type="text"
+            id="buyerName"
+            class="input-box buyer-name-input"
+            placeholder="Masukkan Nama Pembeli"
+        >
+        <div class="table-container">
+            <div class="table-header buyer-grid">
+                <span>No</span>
+                <span>Nama Barang</span>
+                <span>Stok</span>
+                <span>Harga</span>
+                <span>Jumlah Dibeli</span>
+            </div>
+            <div id="buyerItemList"></div>
+        </div>
+        <button onclick="goToPage('loginRolePage')" class="btn blue-btn bottom-left">
+            Kembali
+        </button>
+        <button onclick="resetAllBuyerInputs()" class="btn red-btn">
+        RESET
+        </button>
+        <button onclick="confirmPurchase()" class="btn blue-btn bottom-right">
+            KONFIRMASI
+        </button>
+    </section>
+
+    <!-- HALAMAN 12 - PEMBAYARAN -->
+    <section id="paymentPage" class="page buyer-bg">
+        <p class="mode-text">Mode : PEMBELI</p>
+        <h1 class="top-title">PEMBAYARAN</h1>
+        <div class="payment-box">
+            <div id="paymentItems"></div>
+            <h3 id="paymentTotal"></h3>
+            <input
+                type="number"
+                id="paymentMoney"
+                class="input-box"
+                placeholder="Masukkan Uang Tunai"
+            >
+        </div>
+        <button onclick="goToPage('buyerItemsPage')" class="btn blue-btn bottom-left">
+            Kembali
+        </button>
+        <button onclick="payNow()" class="btn blue-btn bottom-right">
+            BAYAR
+        </button>
+    </section>
+
+    <!-- HALAMAN 13 - STRUK PEMBELI -->
+    <section id="buyerReceiptPage" class="page buyer-bg">
+        <p class="mode-text">Mode : PEMBELI</p>
+        <h1 class="top-title">STRUK PEMBELI</h1>
+        <div class="receipt-box" id="buyerReceiptContent"></div>
+        <button onclick="goToPage('buyerItemsPage')" class="btn blue-btn bottom-right">
+            Kembali
+        </button>
+    </section>
+    <!-- Menghubungkan file JavaScript -->
+    <!-- WAJIB ada type="module" -->
+    <script type="module" src="script.js"></script>
+</body>
+</html>
