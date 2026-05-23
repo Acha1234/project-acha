@@ -1,0 +1,596 @@
+/* ======================================================= */
+/* PENGATURAN DASAR WEBSITE */
+/* ======================================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    overflow: hidden;
+}
+
+
+/* ======================================================= */
+/* BACKGROUND */
+/* ======================================================= */
+
+.dark-bg {
+    background: black;
+}
+
+.gray-bg {
+    background: #4b4b4b;
+}
+
+.buyer-bg {
+    background: #071d49;
+}
+
+
+/* ======================================================= */
+/* PAGE */
+/* ======================================================= */
+
+.page {
+    opacity: 0;
+    visibility: hidden;
+    width: 100%;
+    height: 100vh;
+    position: absolute;
+    top: 0;
+    left: 0;
+    color: white;
+    overflow-y: auto;
+    padding: 30px;
+    transition: all 0.4s ease;
+}
+
+.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+
+/* ======================================================= */
+/* EFEK ASAP */
+/* ======================================================= */
+
+.smoke {
+    position: fixed;
+    width: 300px;
+    height: 300px;
+    background: rgba(0, 140, 255, 0.2);
+    border-radius: 50%;
+    filter: blur(60px);
+    z-index: 0;
+}
+
+.smoke-top {
+    top: -100px;
+    right: -100px;
+}
+
+.smoke-bottom {
+    bottom: -100px;
+    left: -100px;
+}
+
+
+/* ======================================================= */
+/* LENGKUNGAN */
+/* ======================================================= */
+
+.curve {
+    position: absolute;
+    width: 250px;
+    height: 250px;
+    border-radius: 50%;
+    border: 30px solid gray;
+}
+
+.curve-top {
+    top: -100px;
+    right: -100px;
+}
+
+.curve-bottom {
+    bottom: -100px;
+    left: -100px;
+}
+
+
+/* ======================================================= */
+/* TEXT */
+/* ======================================================= */
+
+h1 {
+    font-size: 42px;
+    margin-bottom: 20px;
+}
+
+h2 {
+    margin-bottom: 30px;
+}
+
+.top-title {
+    text-align: center;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+.mode-text {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    font-weight: bold;
+}
+
+.credit-text {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+}
+
+
+/* ======================================================= */
+/* BUTTON */
+/* ======================================================= */
+
+.btn {
+    border: none;
+
+    padding: 12px 25px;
+
+    border-radius: 12px;
+
+    cursor: pointer;
+
+    font-weight: bold;
+
+    margin: 5px;
+
+    transition: 0.3s;
+}
+
+.btn:hover {
+    transform: scale(1.05);
+
+    opacity: 0.9;
+}
+
+.blue-btn {
+    background: #007bff;
+    color: white;
+}
+
+.green-btn {
+    background: green;
+    color: black;
+}
+
+.red-btn {
+    background: red;
+    color: black;
+}
+
+.back-btn {
+    background: #007bff;
+    color: black;
+}
+
+.small-btn {
+    background: #007bff;
+    color: white;
+}
+
+.bottom-left {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+}
+
+.bottom-right {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+}
+
+
+/* ======================================================= */
+/* BOX */
+/* ======================================================= */
+
+.center-box {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+}
+
+.input-box {
+    padding: 12px;
+    border-radius: 10px;
+    border: none;
+    width: 300px;
+}
+
+.search-container {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.search-box {
+    width: 400px;
+    padding: 12px;
+    border-radius: 10px;
+    border: none;
+}
+
+
+/* ======================================================= */
+/* DASHBOARD */
+/* ======================================================= */
+
+.dashboard-container {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin-top: 50px;
+}
+
+.dashboard-card {
+    width: 300px;
+    background: rgba(255,255,255,0.1);
+    backdrop-filter: blur(10px);
+    padding: 20px;
+    border-radius: 20px;
+    text-align: center;
+    box-shadow: 0 0 15px rgba(0,140,255,0.3);
+    transition: 0.3s;
+    animation: fadeUp 0.7s ease;
+}
+
+.dashboard-card:hover {
+    transform: translateY(-10px) scale(1.02);
+
+    box-shadow: 0 0 25px rgba(0,140,255,0.7);
+}
+
+/* ======================================================= */
+/* ICON DASHBOARD */
+/* ======================================================= */
+
+.icon-box {
+    width: 120px;
+    height: 120px;
+
+    margin: 20px auto;
+
+    border-radius: 20px;
+
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    box-shadow: 0 0 20px rgba(0,140,255,0.5);
+
+    transition: 0.3s;
+}
+
+.icon-box:hover {
+    transform: scale(1.08);
+}
+
+.icon-box:hover {
+    transform: scale(1.05);
+}
+
+/* Gambar Barang */
+.barang-icon {
+    background-image: url('images/barang.png');
+}
+
+/* Gambar Uang */
+.uang-icon {
+    background-image: url('images/uang.png');
+}
+
+/* Gambar Antrian */
+.antrian-icon {
+    background-image: url('images/antrian.png');
+}
+
+
+/* ======================================================= */
+/* TABLE */
+/* ======================================================= */
+
+.table-container {
+    width: 90%;
+    margin: auto;
+    background: white;
+    border-radius: 20px;
+    padding: 20px;
+    color: black;
+    max-height: 500px;
+    overflow-y: auto;
+}
+
+.table-header,
+.table-row {
+    display: grid;
+    grid-template-columns: 0.5fr 2fr 1fr 1fr 1fr;
+    gap: 10px;
+    align-items: center;
+    padding: 10px;
+}
+
+.table-header {
+    background: #007bff;
+    color: black;
+    border-radius: 10px;
+    font-weight: bold;
+}
+
+.table-row {
+    background: #d9d9d9;
+    margin-top: 10px;
+    border-radius: 10px;
+}
+
+.buyer-grid {
+    grid-template-columns: 0.5fr 2fr 1fr 1fr 1fr;
+}
+
+.buyer-name-input {
+    margin-bottom: 20px;
+}
+
+
+/* ======================================================= */
+/* FINANCE */
+/* ======================================================= */
+
+.finance-table {
+    width: 95%;
+    margin: auto;
+    background: white;
+    border-radius: 20px;
+    padding: 20px;
+    color: black;
+}
+
+/* bikin tabel bisa scroll */
+.finance-table table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+/* INI YANG PENTING */
+.finance-table tbody {
+    display: block;
+    max-height: 400px;
+    overflow-y: auto;
+    scrollbar-width: thin;
+}
+
+/* supaya header & isi tetap sejajar */
+.finance-table thead,
+.finance-table tbody tr {
+    display: table;
+    width: 100%;
+    table-layout: fixed;
+}
+
+.finance-table th,
+.finance-table td {
+    border: 1px solid black;
+    padding: 10px;
+    text-align: center;
+}
+
+.finance-button-left {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+}
+
+.finance-button-right {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+}
+
+
+/* ======================================================= */
+/* FORM */
+/* ======================================================= */
+
+.form-box {
+    width: 90%;
+    margin: auto;
+    background: white;
+    padding: 30px;
+    border-radius: 20px;
+
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+}
+
+.form-box input {
+    padding: 12px;
+}
+
+
+/* ======================================================= */
+/* RECEIPT */
+/* ======================================================= */
+
+.receipt-box,
+.payment-box {
+    width: 70%;
+    margin: auto;
+    background: white;
+    color: black;
+    border-radius: 20px;
+    padding: 30px;
+}
+
+.receipt-blue {
+    background: #007bff;
+    padding: 15px;
+    border-radius: 10px;
+    margin-top: 15px;
+}
+
+
+/* ======================================================= */
+/* RESPONSIVE */
+/* ======================================================= */
+
+@media(max-width: 900px) {
+
+    .dashboard-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .table-header,
+    .table-row {
+        font-size: 12px;
+    }
+
+}
+/* ======================================================= */
+/* LOGO */
+/* ======================================================= */
+
+.menu-logo {
+    width: 150px;
+    margin-bottom: 20px;
+}
+
+.receipt-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.toko-logo {
+    width: 90px;
+    height: 90px;
+    object-fit: contain;
+}
+.receipt-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.toko-logo {
+    width: 90px;
+    height: 90px;
+    object-fit: contain;
+}
+/* ======================================================= */
+/* PAYMENT */
+/* ======================================================= */
+
+.payment-row {
+    display: grid;
+    grid-template-columns: 2fr 0.5fr 1fr;
+    align-items: center;
+
+    background: #007bff;
+    color: white;
+
+    padding: 15px;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+
+.payment-name {
+    font-weight: bold;
+}
+
+.payment-qty {
+    text-align: center;
+}
+
+.payment-price {
+    text-align: right;
+    font-weight: bold;
+}
+
+.payment-total-box {
+    display: flex;
+    justify-content: space-between;
+
+    background: #00a86b;
+    color: white;
+
+    padding: 15px;
+    border-radius: 10px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+
+    font-size: 20px;
+    font-weight: bold;
+}
+@keyframes fadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(40px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+/* ======================================================= */
+/* LOADING SCREEN */
+/* ======================================================= */
+
+#loader {
+    position: fixed;
+
+    width: 100%;
+    height: 100vh;
+
+    background: black;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    z-index: 9999;
+}
+
+.spinner {
+    width: 70px;
+    height: 70px;
+
+    border: 6px solid gray;
+    border-top: 6px solid #007bff;
+
+    border-radius: 50%;
+
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    100% {
+        transform: rotate(360deg);
+    }
+}
